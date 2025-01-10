@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  holipoly-storefront:
+    container_name: holipoly-storefront
+    build:
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_HOLIPOLY_API_URL: ${NEXT_PUBLIC_HOLIPOLY_API_URL}
+        NEXT_PUBLIC_STOREFRONT_URL: ${NEXT_PUBLIC_STOREFRONT_URL}
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - holipoly_network
+
+  # Add more containers below (nginx, postgres, etc.)
+
+networks:
+  holipoly_network:
+    external: false
